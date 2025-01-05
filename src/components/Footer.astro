@@ -1,0 +1,27 @@
+---
+import Github from "../icons/Social/Github.astro"
+import { ui, defaultLang } from '../i18n/ui';
+
+const currentLang = Astro.cookies.get('lang')?.value || defaultLang;
+---
+
+<footer class="opacity-80 m-4 mt-8 w-full mx-auto container lg:max-w-4xl md:max-w-2xl mb-10 flex justify-center">
+    <div class="rounded-lg w-full max-w-screen-xl mx-auto md:flex md:items-center md:justify-between py-4"> 
+        <span class="text-sm sm:text-center flex items-center">
+            <a href="https://github.com/Rodri-A-DK" target="_blank" 
+            rel="noopener noreferrer" class="hover:underline flex items-center ml-2">
+                <Github class="size-4 md:size-6 mr-2"/>
+                Rodri-A-DK
+            </a>. 
+        </span> 
+
+        <ul class="flex flex-wrap items-center mt-3 text-sm font-medium dark:text-white/90 sm:mt-0"> 
+            <li> 
+                <a href="#sobremi" class="hover:underline me-4 md:me-6">{ui[currentLang]['footer.sobremi']}</a> 
+            </li> 
+            <li> 
+                <a id="contacto" href="mailto:rodrieldkii@gmail.com" class="hover:underline">{ui[currentLang]['footer.contacto']}</a> 
+            </li> 
+        </ul> 
+    </div> 
+</footer>

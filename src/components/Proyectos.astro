@@ -1,0 +1,395 @@
+---
+ import Html from "../icons/Tecnologias/Lenguajes/Html.astro";
+ import Css from "../icons/Tecnologias/Lenguajes/Css.astro";
+ import Js from "../icons/Tecnologias/Lenguajes/Js.astro";
+ import React from "../icons/Tecnologias/Frameworks_Librerias/React.astro";
+ import Social_icons from "./Social_icons.astro";
+ import Github from "../icons/Social/Github.astro";
+ import Link from "../icons/Social/Link.astro";
+ import Electron from "../icons/Tecnologias/Herramientas_Adicionales/Electron.astro";
+ import Supabase from "../icons/Tecnologias/Bases_de_datos/Supabase.astro";
+  import { ui, defaultLang, type Lang } from '../i18n/ui';
+
+  const currentLang = Astro.cookies.get('lang')?.value as Lang || defaultLang;
+
+
+ const TAGS = {
+   Html: {
+     name: "Html",
+     class: "bg-[#963419] text-white",
+     icon: Html,
+   },
+   Css: {
+     name: "Css",
+     class: "bg-[#07436b] text-white",
+     icon: Css,
+   },
+   Js: {
+     name: "Js",
+     class: "bg-[#a39535] text-white",
+     icon: Js,
+   },
+   React: {
+     name: "React",
+     class: "bg-[#07436b] text-white",
+     icon: React,
+   },
+   Electron: {
+     name: "Electron",
+     class: "bg-[#0c5555] text-white",
+     icon: Electron,
+   },
+   Supabase: {
+     name: "Supabase",
+     class: "bg-[#1c7777] text-white",
+     icon: Supabase,
+   }
+ };
+
+ const PROJECTS = [
+ {
+     title: "Entorno de aplicaciones para el manejo de negocios",
+     description: "Aplicaciones creadas para el manejo de negocios de distintos rubros, con sistema de subscricion mensual (ACTUALMENTE DESARROLLÁNDOSE EN EQUIPO)",
+     
+     images: [
+     "/projects/proyecto3.webp",
+       "/projects/proyecto3-2.webp",
+       "/projects/proyecto3-3.webp",
+       "/projects/proyecto3-4.webp",
+       "/projects/proyecto3-5.webp",
+       "/projects/proyecto3-6.webp",
+       "/projects/proyecto3-7.webp",
+       "/projects/proyecto3-8.webp"
+     ],
+     tags: [TAGS.Html, TAGS.Css, TAGS.Js,TAGS.React,TAGS.Supabase,TAGS.Electron],
+   },
+   {
+     title: "Nutriia - Mi primera aplicacion creada con electron",
+     description: "Aplicacion para nutricionistas basado en electron, genera dietas personalizadas con inteligencia artificial para pacientes basado en su altura, peso, nivel de actividad, ubicacion y objetivos. cuenta con un sistema de seguridad propio basado en cuenta de google y licencias para su uso.",
+     link: "https://rodri-a-dk.github.io/Nutriia_Electron/",
+     images: [
+       "/projects/proyecto1.webp",
+       "/projects/proyecto1-2.webp",
+       "/projects/proyecto1-3.webp",
+       "/projects/proyecto1-4.webp",
+       "/projects/proyecto1-5.webp",
+       "/projects/proyecto1-6.webp"
+     ],
+     tags: [TAGS.Html, TAGS.Css,TAGS.Supabase, TAGS.Js, TAGS.React,TAGS.Electron],
+   },
+   {
+     title: "Gestor de licencias",
+     description: "Aplicacion web creada para gestionar licencias de uso mediante supabase en entornos de aplicaciones de un mismo desarrollador",
+     link: "https://rodri-a-dk.github.io/License_manager/",
+     images: [
+     "/projects/proyecto2.webp",
+       "/projects/proyecto2-2.webp",
+       "/projects/proyecto2-3.webp",
+       "/projects/proyecto2-4.webp",
+       "/projects/proyecto2-5.webp"
+     ],
+     tags: [TAGS.Html, TAGS.Css, TAGS.Js,TAGS.React,TAGS.Supabase],
+   },
+   {
+     title: "D&D - Juego de rol con ia",
+     description: "Este fue un proyecto para la facultad, es un juego de rol que crea historias interactivas con opciones y tambien da la libertad de crear respuestas propias ante los diferentes escenarios, ademas cuenta con una pasarela de pagos. (no es necesario iniciar sesion para jugar solo crear un personaje)",
+     link: "https://rodri-a-dk.github.io/dndbienhosteado/",
+     images: [
+     "/projects/proyecto4.webp",
+       "/projects/proyecto4-2.webp",
+       "/projects/proyecto4-3.webp",
+       "/projects/proyecto4-4.webp",
+       "/projects/proyecto4-5.webp",
+       "/projects/proyecto4-6.webp",
+       "/projects/proyecto4-7.webp",
+       "/projects/proyecto4-8.webp"
+     ],
+     tags: [TAGS.Html, TAGS.Css, TAGS.Js, TAGS.React],
+   },
+ ];
+ ---
+ 
+ <div class="flex flex-col gap-y-16">
+   {PROJECTS.map(({ images, title, description, tags, link, github }, projectIndex) => (
+     <article class="flex flex-col md:flex-row md:space-x-8 space-y-8 md:space-y-0">
+       <div class="w-full md:w-1/2 flex items-center group">
+         <div class="relative flex flex-col items-center transition duration-500 ease-in-out transform shadow-xl overflow-hidden rounded-xl sm:rounded-xl lg:border lg:border-gray-800 group-hover:shadow-2xl">
+           <div class="relative w-full h-full overflow-hidden" id={`carousel-${projectIndex}`}>
+             <div class="flex transition-transform duration-500 h-full w-full" id={`slider-${projectIndex}`}>
+               {images.map((image, index) => (
+                 <img
+                   alt={`Captura del Proyecto ${index + 1}`}
+                   class="object-cover object-top w-full h-full shrink-0 transition duration-500 sm:h-full  cursor-pointer"
+                   loading="lazy"
+                   src={image}
+                   data-modal-target={`modal-${projectIndex}-${index}`}
+                 />
+               ))}
+             </div>
+             {images.length > 1 && (
+               <>
+                 <button
+                   class="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white opacity-0 group-hover:opacity-100 transition-opacity"
+                   id={`prev-${projectIndex}`}
+                 >
+                   ←
+                 </button>
+                 <button
+                   class="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white opacity-0 group-hover:opacity-100 transition-opacity"
+                   id={`next-${projectIndex}`}
+                 >
+                   →
+                 </button>
+                 <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-2">
+                   {images.map((_, index) => (
+                     <button
+                       class="w-2 h-2 rounded-full transition-colors bg-white/50 dot-indicator"
+                       data-index={index}
+                       data-project={projectIndex}
+                     />
+                   ))}
+                 </div>
+               </>
+             )}
+           </div>
+         </div>
+       </div>
+  
+       <div class="w-full md:w-1/2 flex flex-col justify-center">
+         <h3 class="text-2xl font-bold mb-2">{title}</h3>
+         <div class="flex flex-wrap mt-2">
+           <ul class="flex flex-row mb-2 gap-x-2">
+             {tags.map((tag) => (
+               <li>
+                 <span class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2`}>
+                   <tag.icon class="size-4" />
+                   {tag.name}
+                 </span>
+               </li>
+             ))}
+           </ul>
+         </div>
+  
+         <div class="mt-2 text-lg mb-4">{description}</div>
+  
+         <footer class="flex items-end justify-start mt-4 gap-x-4">
+           {github && (
+             <Social_icons href={github}>
+               <Github class="size-6" />
+               {ui[currentLang]['project.code']}
+             </Social_icons>
+           )}
+           {link && (
+             <Social_icons href={link}>
+               <Link class="size-4" />
+               {ui[currentLang]['project.preview']}
+             </Social_icons>
+           )}
+         </footer>
+       </div>
+     </article>
+   ))}
+ </div>
+  
+ {PROJECTS.map(({ images, title }, projectIndex) => 
+   images.map((image, imageIndex) => (
+     <div
+       id={`modal-${projectIndex}-${imageIndex}`}
+       class="fixed inset-0 z-50 hidden items-center justify-center bg-black bg-opacity-75 p-4"
+       data-project-index={projectIndex}
+       data-image-index={imageIndex}
+     >
+       <div class="relative w-full flex items-center justify-center">
+  
+         <img
+           src={image}
+           alt={`${title} - Imagen ${imageIndex + 1}`}
+           class="max-h-[85vh] max-w-[85vw] object-contain"
+         />
+  
+   
+         <button
+           class="absolute -top-4 -right-4 rounded-full bg-gray-300 p-2 text-black hover:bg-gray-200 transition-colors"
+           onclick="this.closest('[id^=modal-]').classList.add('hidden')"
+           aria-label="Cerrar modal"
+         >
+           ✕
+         </button>
+  
+         <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-white/20 px-3 py-1 rounded-full">
+           {imageIndex + 1} / {images.length}
+         </div>
+       </div>
+     </div>
+   ))
+ )}
+  
+ <script>
+   const PROJECTS = [
+   { images: [
+     "/projects/proyecto3.webp",
+       "/projects/proyecto3-2.webp",
+       "/projects/proyecto3-3.webp",
+       "/projects/proyecto3-4.webp",
+       "/projects/proyecto3-5.webp",
+       "/projects/proyecto3-6.webp",
+       "/projects/proyecto3-7.webp",
+       "/projects/proyecto3-8.webp"
+     ]},
+     {
+       images: [
+         "/projects/proyecto1.webp",
+         "/projects/proyecto1-2.webp",
+         "/projects/proyecto1-3.webp",
+         "/projects/proyecto1-4.webp",
+         "/projects/proyecto1-5.webp",
+         "/projects/proyecto1-6.webp",
+       ]
+     },
+     {
+       images: [
+         "/projects/proyecto2.webp",
+         "/projects/proyecto2-2.webp",
+         "/projects/proyecto2-3.webp",
+         "/projects/proyecto2-4.webp",
+         "/projects/proyecto2-5.webp"
+       ]
+     },
+     { images: [
+     "/projects/proyecto4.webp",
+       "/projects/proyecto4-2.webp",
+       "/projects/proyecto4-3.webp",
+       "/projects/proyecto4-4.webp",
+       "/projects/proyecto4-5.webp",
+       "/projects/proyecto4-6.webp",
+       "/projects/proyecto4-7.webp",
+       "/projects/proyecto4-8.webp"
+     ]}
+   ];
+  
+   function setupCarousels() {
+     document.querySelectorAll('[id^="carousel-"]').forEach((carousel, projectIndex) => {
+       const slider = carousel.querySelector(`#slider-${projectIndex}`);
+       const prevButton = carousel.querySelector(`#prev-${projectIndex}`);
+       const nextButton = carousel.querySelector(`#next-${projectIndex}`);
+       const dots = carousel.querySelectorAll('.dot-indicator[data-project="' + projectIndex + '"]');
+       
+       let currentIndex = 0;
+       const totalSlides = dots.length;
+  
+       function updateSlide(index) {
+         if (!slider) return;
+         
+         currentIndex = index;
+         slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+         
+         dots.forEach((dot, i) => {
+           if (i === currentIndex) {
+             dot.classList.add('bg-white');
+             dot.classList.remove('bg-white/50');
+           } else {
+             dot.classList.remove('bg-white');
+             dot.classList.add('bg-white/50');
+           }
+         });
+       }
+  
+       prevButton?.addEventListener('click', () => {
+         const newIndex = currentIndex === 0 ? totalSlides - 1 : currentIndex - 1;
+         updateSlide(newIndex);
+       });
+  
+       nextButton?.addEventListener('click', () => {
+         const newIndex = currentIndex === totalSlides - 1 ? 0 : currentIndex + 1;
+         updateSlide(newIndex);
+       });
+  
+       dots.forEach((dot) => {
+         dot.addEventListener('click', () => {
+           const index = parseInt(dot.dataset.index || '0');
+           updateSlide(index);
+         });
+       });
+  
+       if (dots.length > 0) {
+         dots[0].classList.add('bg-white');
+         dots[0].classList.remove('bg-white/50');
+       }
+     });
+   }
+  
+   function prevImage(modal) {
+     if (!modal) return;
+     
+     const projectIndex = modal.dataset.projectIndex;
+     const currentImageIndex = parseInt(modal.dataset.imageIndex);
+     const projectImages = PROJECTS[projectIndex].images;
+     
+     const newIndex = currentImageIndex === 0 ? projectImages.length - 1 : currentImageIndex - 1;
+     const newModalId = `modal-${projectIndex}-${newIndex}`;
+     
+     modal.classList.add('hidden');
+     document.getElementById(newModalId)?.classList.remove('hidden');
+     document.getElementById(newModalId)?.classList.add('flex');
+   }
+  
+   function nextImage(modal) {
+     if (!modal) return;
+     
+     const projectIndex = modal.dataset.projectIndex;
+     const currentImageIndex = parseInt(modal.dataset.imageIndex);
+     const projectImages = PROJECTS[projectIndex].images;
+     
+     const newIndex = currentImageIndex === projectImages.length - 1 ? 0 : currentImageIndex + 1;
+     const newModalId = `modal-${projectIndex}-${newIndex}`;
+     
+     modal.classList.add('hidden');
+     document.getElementById(newModalId)?.classList.remove('hidden');
+     document.getElementById(newModalId)?.classList.add('flex');
+   }
+  
+   function setupImageModals() {
+     document.querySelectorAll('img[data-modal-target]').forEach(img => {
+       img.addEventListener('click', (e) => {
+         const modalId = e.currentTarget.dataset.modalTarget;
+         const modal = document.getElementById(modalId);
+         if (modal) {
+           modal.classList.remove('hidden');
+           modal.classList.add('flex');
+           e.stopPropagation();
+         }
+       });
+     });
+  
+     document.querySelectorAll('[id^=modal-]').forEach(modal => {
+       modal.addEventListener('click', (e) => {
+         if (e.target === modal) {
+           modal.classList.add('hidden');
+           modal.classList.remove('flex');
+         }
+       });
+     });
+  
+     document.addEventListener('keydown', (e) => {
+       const activeModal = document.querySelector('[id^=modal-]:not(.hidden)');
+       if (!activeModal) return;
+  
+       if (e.key === 'Escape') {
+         activeModal.classList.add('hidden');
+         activeModal.classList.remove('flex');
+       } else if (e.key === 'ArrowLeft') {
+         prevImage(activeModal);
+       } else if (e.key === 'ArrowRight') {
+         nextImage(activeModal);
+       }
+     });
+   }
+  
+   function initialize() {
+     setupCarousels();
+     setupImageModals();
+   }
+  
+   initialize();
+   document.addEventListener('astro:page-load', initialize);
+ </script>

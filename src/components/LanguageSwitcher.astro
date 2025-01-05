@@ -1,0 +1,21 @@
+---
+import { languages } from '../utils/i18n';
+---
+<select class=" rounded-full px-3 py-1 transition text-base md:text-sm" href="#top" is:inline>
+    {languages.map(lang => (
+        <option value={lang} > {lang.toUpperCase()}</option>
+    ))}
+</select>
+<script is:inline>
+    import {  setLanguage, getLanguage} from '../utils/i18n';
+    const selectElement = document.querySelector('select');
+    const currentLanguage = getLanguage();
+    selectElement.value = currentLanguage;
+
+
+    selectElement.addEventListener('change', (event) => {
+        const selectedLanguage = event.target.value;
+        setLanguage(selectedLanguage);
+        document.location.reload();
+      });
+</script>

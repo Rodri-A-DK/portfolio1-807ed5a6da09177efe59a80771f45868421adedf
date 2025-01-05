@@ -1,0 +1,31 @@
+{
+  "header": {
+    "inicio": "Inicio",
+    "tecnologias": "Tecnologías",
+    "proyectos": "Proyectos",
+    "sobremi": "Sobre mí"
+  },
+  "hero": {
+    "title": "Hola, Soy Rodrigo",
+    "subtitleFirst": "Programador Full-Stack.",
+    "subtitleSecond": "Tengo 23 años, soy de Tucumán, Argentina. Me especializo en desarrollo de software y soluciones tecnológicas, siempre buscando mejorar. Mi objetivo es aportar soluciones creativas y efectivas.",
+    "openToWork": "Open To Work"
+  },
+  "tecnologias":{
+    "title":"Tecnologías",
+    "lenguajes":"Lenguajes",
+    "frameworks":"Frameworks y Librerías",
+    "basesDeDatos":"Bases de Datos",
+    "herramientas":"Herramientas Adicionales"
+  },
+    "proyectos":{
+        "title":"Proyectos"
+    },
+  "sobremi":{
+        "title":"Sobre mi"
+  },
+  "footer": {
+    "sobremi": "Sobre mí",
+    "contacto": "Contacto"
+  }
+}

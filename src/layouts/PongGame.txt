@@ -1,0 +1,246 @@
+         
+            class AtariPong {
+                constructor(canvas) {
+                    this.canvas = canvas;
+                    this.ctx = canvas.getContext('2d');
+                    this.width = canvas.width;
+                    this.height = canvas.height;
+                   
+                    // Classic Atari Pong paddle dimensions
+                    this.paddleWidth = 10;
+                    this.paddleHeight = 50;
+                   
+                    // Left (player) and right (AI) paddles
+                    this.playerPaddleY = this.height / 2 - this.paddleHeight / 2;
+                    this.aiPaddleY = this.height / 2 - this.paddleHeight / 2;
+                   
+                    // Ball properties (more pixelated and slower)
+                    this.ballSize = 5;
+                    this.ballX = this.width / 2;
+                    this.ballY = this.height / 2;
+                    this.ballSpeedX = 3;
+                    this.ballSpeedY = 2;
+                   
+                    // Scoring
+                    this.playerScore = 0;
+                    this.aiScore = 0;
+                   
+                    // Game state
+                    this.isGameActive = false;
+                   
+                    // Control setup
+                    this.setupControls();
+                }
+               
+                setupControls() {
+                    // Player paddle controls (mouse movement)
+                    this.canvas.addEventListener('mousemove', (e) => {
+                        const rect = this.canvas.getBoundingClientRect();
+                        const mouseY = e.clientY - rect.top;
+                       
+                        // Constrain paddle movement
+                        this.playerPaddleY = Math.max(
+                            0,
+                            Math.min(
+                                this.height - this.paddleHeight,
+                                mouseY - this.paddleHeight / 2
+                            )
+                        );
+                    });
+                }
+               
+                drawPaddles() {
+                    this.ctx.fillStyle = 'white';
+                   
+                    // Player paddle (left side)
+                    this.ctx.fillRect(
+                        10,
+                        this.playerPaddleY,
+                        this.paddleWidth,
+                        this.paddleHeight
+                    );
+                   
+                    // AI paddle (right side)
+                    this.ctx.fillRect(
+                        this.width - 20,
+                        this.aiPaddleY,
+                        this.paddleWidth,
+                        this.paddleHeight
+                    );
+                }
+               
+                drawBall() {
+                    this.ctx.fillStyle = 'white';
+                    this.ctx.fillRect(
+                        this.ballX - this.ballSize / 2,
+                        this.ballY - this.ballSize / 2,
+                        this.ballSize,
+                        this.ballSize
+                    );
+                }
+               
+                drawScore() {
+                    this.ctx.fillStyle = 'white';
+                    this.ctx.font = '20px monospace';
+                    this.ctx.textAlign = 'center';
+                    this.ctx.fillText(
+                        ${this.playerScore}   |   ${this.aiScore},
+                        this.width / 2,
+                        30
+                    );
+                }
+               
+                drawCenterLine() {
+                    // Draw dotted center line
+                    this.ctx.beginPath();
+                    this.ctx.setLineDash([5, 5]);
+                    this.ctx.moveTo(this.width / 2, 0);
+                    this.ctx.lineTo(this.width / 2, this.height);
+                    this.ctx.strokeStyle = 'white';
+                    this.ctx.stroke();
+                    this.ctx.setLineDash([]); // Reset line dash
+                }
+               
+                moveAIPaddle() {
+                    // Simple AI movement - track the ball's y-position
+                    const aiPaddleCenter = this.aiPaddleY + this.paddleHeight / 2;
+                   
+                    // Add some slight imperfection to make it more human-like
+                    const difficulty = 0.7; // 70% accuracy
+                    if (Math.random() < difficulty) {
+                        if (this.ballY < aiPaddleCenter) {
+                            this.aiPaddleY = Math.max(0, this.aiPaddleY - 3);
+                        } else if (this.ballY > aiPaddleCenter) {
+                            this.aiPaddleY = Math.min(this.height - this.paddleHeight, this.aiPaddleY + 3);
+                        }
+                    }
+                }
+               
+                update() {
+                    // Ball movement
+                    this.ballX += this.ballSpeedX;
+                    this.ballY += this.ballSpeedY;
+                   
+                    // AI paddle movement
+                    this.moveAIPaddle();
+                   
+                    // Top and bottom wall collision
+                    if (this.ballY <= 0 || this.ballY >= this.height) {
+                        this.ballSpeedY = -this.ballSpeedY;
+                    }
+                   
+                    // Player paddle collision
+                    if (
+                        this.ballX <= 20 &&
+                        this.ballY >= this.playerPaddleY &&
+                        this.ballY <= this.playerPaddleY + this.paddleHeight
+                    ) {
+                        this.ballSpeedX = Math.abs(this.ballSpeedX);
+                        // Add some angle variation
+                        this.ballSpeedY += (Math.random() - 0.5);
+                        // Increase speed slightly
+                        this.ballSpeedX *= 1.05;
+                    }
+                   
+                    // AI paddle collision
+                    if (
+                        this.ballX >= this.width - 20 &&
+                        this.ballY >= this.aiPaddleY &&
+                        this.ballY <= this.aiPaddleY + this.paddleHeight
+                    ) {
+                        this.ballSpeedX = -Math.abs(this.ballSpeedX);
+                        // Add some angle variation
+                        this.ballSpeedY += (Math.random() - 0.5);
+                        // Increase speed slightly
+                        this.ballSpeedX *= 1.05;
+                    }
+                   
+                    // Scoring
+                    if (this.ballX <= 0) {
+                        this.aiScore++;
+                        this.resetBall();
+                    } else if (this.ballX >= this.width) {
+                        this.playerScore++;
+                        this.resetBall();
+                    }
+                }
+               
+                resetBall() {
+                    this.ballX = this.width / 2;
+                    this.ballY = this.height / 2;
+                   
+                    // Randomize initial direction
+                    this.ballSpeedX = Math.random() > 0.5 ? 3 : -3;
+                    this.ballSpeedY = Math.random() * 4 - 2;
+                   
+                    // Check for game over (first to 10 wins)
+                    if (this.playerScore >= 10 || this.aiScore >= 10) {
+                        this.gameOver();
+                    }
+                }
+               
+                gameOver() {
+                    this.isGameActive = false;
+                   
+                    // Clear canvas
+                    this.ctx.fillStyle = 'black';
+                    this.ctx.fillRect(0, 0, this.width, this.height);
+                   
+                    // Display game over message
+                    this.ctx.fillStyle = 'white';
+                    this.ctx.font = '30px monospace';
+                    this.ctx.textAlign = 'center';
+                   
+                    if (this.playerScore >= 10) {
+                        this.ctx.fillText('¡GANASTE!', this.width / 2, this.height / 2);
+                    } else {
+                        this.ctx.fillText('¡PERDISTE!', this.width / 2, this.height / 2);
+                    }
+                   
+                    // Add restart instruction
+                    this.ctx.font = '20px monospace';
+                    this.ctx.fillText('Recarga la página para jugar de nuevo', this.width / 2, this.height / 2 + 50);
+                }
+               
+                render() {
+                    // Clear canvas
+                    this.ctx.fillStyle = 'black';
+                    this.ctx.fillRect(0, 0, this.width, this.height);
+                   
+                    // Draw game elements
+                    this.drawCenterLine();
+                    this.drawPaddles();
+                    this.drawBall();
+                    this.drawScore();
+                   
+                    // Update game state
+                    this.update();
+                }
+               
+                start() {
+                    this.isGameActive = true;
+                    this.resetBall();
+                    this.gameLoop();
+                }
+               
+                gameLoop() {
+                    if (!this.isGameActive) return;
+                    this.render();
+                    requestAnimationFrame(() => this.gameLoop());
+                }
+            }
+            
+            // Initialize the game
+            document.addEventListener('DOMContentLoaded', () => {
+                const canvas = document.createElement('canvas');
+                canvas.width = 400;  // Smaller width
+                canvas.height = 250; // Smaller height
+                canvas.style.backgroundColor = 'black';
+                canvas.style.border = '2px solid white';
+                canvas.style.display = 'block';
+                canvas.style.margin = '20px auto'; // Center the canvas
+                document.body.appendChild(canvas);
+               
+                const game = new AtariPong(canvas);
+                game.start();
+            });
