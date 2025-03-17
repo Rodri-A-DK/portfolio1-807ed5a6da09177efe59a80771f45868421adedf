@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config';
-import vercel from '@astrojs/vercel';
+import vercel from '@astrojs/vercel/serverless'; // or /edge
 
 export default defineConfig({
-  output: 'server',
-  adapter: vercel(),
+  output: 'static', // or 'static' if you're prerendering everything
+  adapter: vercel(), // or vercel({ mode: 'edge' })
 });
