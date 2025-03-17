@@ -1,8 +1,8 @@
 ---
 import Github from "../icons/Social/Github.astro"
-import { ui, defaultLang } from '../i18n/ui';
+import { ui, defaultLang , type Lang } from '../i18n/ui';
 
-const currentLang = Astro.cookies.get('lang')?.value || defaultLang;
+const currentLang = Astro.cookies.get('lang')?.value as Lang || defaultLang;
 ---
 
 <footer class="opacity-80 m-4 mt-8 w-full mx-auto container lg:max-w-4xl md:max-w-2xl mb-10 flex justify-center">
@@ -16,9 +16,7 @@ const currentLang = Astro.cookies.get('lang')?.value || defaultLang;
         </span> 
 
         <ul class="flex flex-wrap items-center mt-3 text-sm font-medium dark:text-white/90 sm:mt-0"> 
-            <li> 
-                <a href="#sobremi" class="hover:underline me-4 md:me-6">{ui[currentLang]['footer.sobremi']}</a> 
-            </li> 
+    
             <li> 
                 <a id="contacto" href="mailto:rodrieldkii@gmail.com" class="hover:underline">{ui[currentLang]['footer.contacto']}</a> 
             </li> 

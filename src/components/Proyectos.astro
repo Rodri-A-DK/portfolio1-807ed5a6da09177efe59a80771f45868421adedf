@@ -61,7 +61,7 @@
        "/projects/proyecto3-7.webp",
        "/projects/proyecto3-8.webp"
      ],
-     tags: [TAGS.Html, TAGS.Css, TAGS.Js,TAGS.React,TAGS.Supabase,TAGS.Electron],
+     tags: [TAGS.Css,TAGS.React,TAGS.Supabase,TAGS.Electron],
    },
    {
      title: "Nutriia - Mi primera aplicacion creada con electron",
@@ -75,7 +75,7 @@
        "/projects/proyecto1-5.webp",
        "/projects/proyecto1-6.webp"
      ],
-     tags: [TAGS.Html, TAGS.Css,TAGS.Supabase, TAGS.Js, TAGS.React,TAGS.Electron],
+     tags: [TAGS.Html, TAGS.Css,TAGS.Supabase,TAGS.Electron],
    },
    {
      title: "Gestor de licencias",
@@ -88,7 +88,7 @@
        "/projects/proyecto2-4.webp",
        "/projects/proyecto2-5.webp"
      ],
-     tags: [TAGS.Html, TAGS.Css, TAGS.Js,TAGS.React,TAGS.Supabase],
+     tags: [TAGS.Html, TAGS.Css,TAGS.React,TAGS.Supabase],
    },
    {
      title: "D&D - Juego de rol con ia",
@@ -154,7 +154,7 @@
            </div>
          </div>
        </div>
-  
+ 
        <div class="w-full md:w-1/2 flex flex-col justify-center">
          <h3 class="text-2xl font-bold mb-2">{title}</h3>
          <div class="flex flex-wrap mt-2">
@@ -169,9 +169,9 @@
              ))}
            </ul>
          </div>
-  
+ 
          <div class="mt-2 text-lg mb-4">{description}</div>
-  
+ 
          <footer class="flex items-end justify-start mt-4 gap-x-4">
            {github && (
              <Social_icons href={github}>
@@ -182,7 +182,7 @@
            {link && (
              <Social_icons href={link}>
                <Link class="size-4" />
-               {ui[currentLang]['project.preview']}
+                {ui[currentLang]['project.preview']}
              </Social_icons>
            )}
          </footer>
@@ -190,7 +190,7 @@
      </article>
    ))}
  </div>
-  
+ 
  {PROJECTS.map(({ images, title }, projectIndex) => 
    images.map((image, imageIndex) => (
      <div
@@ -200,13 +200,13 @@
        data-image-index={imageIndex}
      >
        <div class="relative w-full flex items-center justify-center">
-  
+ 
          <img
            src={image}
            alt={`${title} - Imagen ${imageIndex + 1}`}
            class="max-h-[85vh] max-w-[85vw] object-contain"
          />
-  
+ 
    
          <button
            class="absolute -top-4 -right-4 rounded-full bg-gray-300 p-2 text-black hover:bg-gray-200 transition-colors"
@@ -215,7 +215,7 @@
          >
            ✕
          </button>
-  
+ 
          <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-white/20 px-3 py-1 rounded-full">
            {imageIndex + 1} / {images.length}
          </div>
@@ -223,7 +223,7 @@
      </div>
    ))
  )}
-  
+ 
  <script>
    const PROJECTS = [
    { images: [
@@ -266,7 +266,7 @@
        "/projects/proyecto4-8.webp"
      ]}
    ];
-  
+ 
    function setupCarousels() {
      document.querySelectorAll('[id^="carousel-"]').forEach((carousel, projectIndex) => {
        const slider = carousel.querySelector(`#slider-${projectIndex}`);
@@ -276,7 +276,7 @@
        
        let currentIndex = 0;
        const totalSlides = dots.length;
-  
+ 
        function updateSlide(index) {
          if (!slider) return;
          
@@ -293,31 +293,31 @@
            }
          });
        }
-  
+ 
        prevButton?.addEventListener('click', () => {
          const newIndex = currentIndex === 0 ? totalSlides - 1 : currentIndex - 1;
          updateSlide(newIndex);
        });
-  
+ 
        nextButton?.addEventListener('click', () => {
          const newIndex = currentIndex === totalSlides - 1 ? 0 : currentIndex + 1;
          updateSlide(newIndex);
        });
-  
+ 
        dots.forEach((dot) => {
          dot.addEventListener('click', () => {
            const index = parseInt(dot.dataset.index || '0');
            updateSlide(index);
          });
        });
-  
+ 
        if (dots.length > 0) {
          dots[0].classList.add('bg-white');
          dots[0].classList.remove('bg-white/50');
        }
      });
    }
-  
+ 
    function prevImage(modal) {
      if (!modal) return;
      
@@ -332,7 +332,7 @@
      document.getElementById(newModalId)?.classList.remove('hidden');
      document.getElementById(newModalId)?.classList.add('flex');
    }
-  
+ 
    function nextImage(modal) {
      if (!modal) return;
      
@@ -347,7 +347,7 @@
      document.getElementById(newModalId)?.classList.remove('hidden');
      document.getElementById(newModalId)?.classList.add('flex');
    }
-  
+ 
    function setupImageModals() {
      document.querySelectorAll('img[data-modal-target]').forEach(img => {
        img.addEventListener('click', (e) => {
@@ -360,7 +360,7 @@
          }
        });
      });
-  
+ 
      document.querySelectorAll('[id^=modal-]').forEach(modal => {
        modal.addEventListener('click', (e) => {
          if (e.target === modal) {
@@ -369,11 +369,11 @@
          }
        });
      });
-  
+ 
      document.addEventListener('keydown', (e) => {
        const activeModal = document.querySelector('[id^=modal-]:not(.hidden)');
        if (!activeModal) return;
-  
+ 
        if (e.key === 'Escape') {
          activeModal.classList.add('hidden');
          activeModal.classList.remove('flex');
@@ -384,12 +384,12 @@
        }
      });
    }
-  
+ 
    function initialize() {
      setupCarousels();
      setupImageModals();
    }
-  
+ 
    initialize();
    document.addEventListener('astro:page-load', initialize);
  </script>

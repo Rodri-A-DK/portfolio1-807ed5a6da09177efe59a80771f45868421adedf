@@ -1,21 +1,22 @@
 ---
 const fondo_IMAGE = "/projects/fotoperfilabajo.png";
+import { ui, defaultLang, type Lang } from '../i18n/ui';
+const currentLang = Astro.cookies.get('lang')?.value as Lang || defaultLang;
 ---
 <section class="flex flex-col md:flex-row gap-x-8 justify-center items-center">
     <div class="[&>p]:mb-4 [&>p>strong]:text-blue-300 [&>p>strong]:font-semibold text-pretty">
       <p>
-          Soy <strong>Programador técnico con formación universitaria</strong> en la UTN FRT (Universidad Tecnológica Nacional, Facultad Regional Tucumán). 
+        Soy <strong>Programador tecnico con formación universitaria</strong> en la UTN FRT  (Universidad Tecnológica Nacional, Facultad Regional Tucumán).
       </p>
       
       <p>
-          Estoy buscando oportunidades para <strong>crecer como profesional</strong> y prepararme para el mundo laboral.
+        Estoy buscando oportunidades para <strong>crecer como profesional</strong> y prepararme para el mundo laboral.
       </p>
   
       <p class="text-pretty">
-          Todos los días continúo desarrollando mis habilidades como dev <strong>Full-Stack</strong>, participando en proyectos y haciendo cursos que me permitan <strong>aprender y crecer</strong> como programador. 
+        Todos los días continúo desarrollando mis habilidades como dev <strong>Full-Stack</strong>, participando en proyectos y haciendo cursos que me permitan <strong>aprender y crecer</strong> como programador.
       </p>
     </div>
     <!-- Carga de la imagen de perfil -->
     <img src={fondo_IMAGE} alt="yo" class="rounded-s-full size-64">
   </section>
-  

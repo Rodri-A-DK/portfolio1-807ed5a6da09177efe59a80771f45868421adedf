@@ -1,31 +1,47 @@
 {
-    "header": {
-      "inicio": "Home",
-      "tecnologias": "Technologies",
-      "proyectos": "Projects",
-      "sobremi": "About me"
+  "header": {
+    "inicio": "Home",
+    "tecnologias": "Technologies",
+    "proyectos": "Projects",
+    "sobremi": "About me"
+  },
+  "hero": {
+    "title": "Hello, I'm Rodrigo",
+    "subtitleFirst": "Full-Stack Programmer.",
+    "subtitleSecond":"I am 23 years old, from Tucumán, Argentina. I specialize in software development and technological solutions, always looking to improve. My goal is to provide creative and effective solutions.",
+     "openToWork": "Open To Work"
+  },
+  "tecnologias":{
+    "title":"Technologies",
+    "lenguajes":"Languages",
+    "frameworks":"Frameworks and Libraries",
+    "basesDeDatos":"Databases",
+    "herramientas":"Additional Tools"
+  },
+    "proyectos":{
+        "title":"Projects",
+         "project1Title": "Business management application environment",
+         "project1Description": "Applications created for managing businesses of different types, with a monthly subscription system (CURRENTLY BEING DEVELOPED IN TEAM)",
+         "project2Title": "Nutriia - My first application created with electron",
+         "project2Description": "Application for nutritionists based on electron, generates personalized diets with artificial intelligence for patients based on their height, weight, activity level, location and goals. It has its own security system based on google account and licenses for its use.",
+         "project3Title": "License manager",
+          "project3Description": "Web application created to manage user licenses through supabase in environments of applications from the same developer",
+          "project4Title": "D&D - Role-playing game with ai",
+         "project4Description": "This was a project for the faculty, it is a role-playing game that creates interactive stories with options and also gives the freedom to create your own responses to different scenarios, it also has a payment gateway. (it is not necessary to log in to play just create a character)"
     },
-    "hero": {
-      "title": "Hello, I'm Rodrigo",
-      "subtitleFirst": "Full-Stack Programmer.",
-      "subtitleSecond":"I am 23 years old, from Tucumán, Argentina. I specialize in software development and technological solutions, always looking to improve. My goal is to provide creative and effective solutions.",
-       "openToWork": "Open To Work"
+    "sobremi":{
+      "title":"About me",
+      "description1": "I am a <strong>Technical programmer with university education</strong> at UTN FRT (National Technological University, Tucumán Regional Faculty).",
+      "description2": "I am looking for opportunities to <strong>grow as a professional</strong> and prepare for the world of work.",
+      "description3": "Every day I continue to develop my skills as a <strong>Full-Stack</strong> dev, participating in projects and taking courses that allow me to <strong>learn and grow</strong> as a programmer."
     },
-    "tecnologias":{
-      "title":"Technologies",
-      "lenguajes":"Languages",
-      "frameworks":"Frameworks and Libraries",
-      "basesDeDatos":"Databases",
-      "herramientas":"Additional Tools"
+  "footer": {
+    "sobremi": "About me",
+    "contacto": "Contact"
+  },
+ "project":{
+     "code": "Code",
+     "preview": "Preview"
     },
-      "proyectos":{
-          "title":"Projects"
-      },
-      "sobremi":{
-        "title":"About me"
-      },
-    "footer": {
-      "sobremi": "About me",
-      "contacto": "Contact"
-    }
-  }
+  "verCertificado": "See Certificate"
+}

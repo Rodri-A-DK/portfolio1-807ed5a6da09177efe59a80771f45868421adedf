@@ -19,13 +19,29 @@
     "herramientas":"Herramientas Adicionales"
   },
     "proyectos":{
-        "title":"Proyectos"
-    },
-  "sobremi":{
-        "title":"Sobre mi"
-  },
-  "footer": {
-    "sobremi": "Sobre mí",
-    "contacto": "Contacto"
-  }
+        "title":"Proyectos",
+         "project1Title": "Entorno de aplicaciones para el manejo de negocios",
+         "project1Description": "Aplicaciones creadas para el manejo de negocios de distintos rubros, con sistema de subscricion mensual (ACTUALMENTE DESARROLLÁNDOSE EN EQUIPO)",
+         "project2Title": "Nutriia - Mi primera aplicacion creada con electron",
+         "project2Description": "Aplicacion para nutricionistas basado en electron, genera dietas personalizadas con inteligencia artificial para pacientes basado en su altura, peso, nivel de actividad, ubicacion y objetivos. cuenta con un sistema de seguridad propio basado en cuenta de google y licencias para su uso.",
+         "project3Title": "Gestor de licencias",
+          "project3Description": "Aplicacion web creada para gestionar licencias de uso mediante supabase en entornos de aplicaciones de un mismo desarrollador",
+         "project4Title": "D&D - Juego de rol con ia",
+        "project4Description": "Este fue un proyecto para la facultad, es un juego de rol que crea historias interactivas con opciones y tambien da la libertad de crear respuestas propias ante los diferentes escenarios, ademas cuenta con una pasarela de pagos. (no es necesario iniciar sesion para jugar solo crear un personaje)"
+       },
+ "sobremi":{
+       "title":"Sobre mi",
+        "description1": "Soy <strong>Programador técnico con formación universitaria</strong> en la UTN FRT (Universidad Tecnológica Nacional, Facultad Regional Tucumán).",
+        "description2": "Estoy buscando oportunidades para <strong>crecer como profesional</strong> y prepararme para el mundo laboral.",
+        "description3": "Todos los días continúo desarrollando mis habilidades como dev <strong>Full-Stack</strong>, participando en proyectos y haciendo cursos que me permitan <strong>aprender y crecer</strong> como programador."
+ },
+ "footer": {
+   "sobremi": "Sobre mí",
+   "contacto": "Contacto"
+ },
+"project":{
+    "code": "Code",
+    "preview": "Preview"
+   },
+ "verCertificado": "Ver Certificado"
 }

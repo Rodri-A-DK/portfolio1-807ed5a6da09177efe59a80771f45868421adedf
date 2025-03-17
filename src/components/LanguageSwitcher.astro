@@ -1,21 +1,14 @@
 ---
 import { languages } from '../utils/i18n';
+import { defaultLang } from '../i18n/ui';
+
+const currentLang = Astro.cookies.get('lang')?.value || defaultLang;
 ---
-<select class=" rounded-full px-3 py-1 transition text-base md:text-sm" href="#top" is:inline>
-    {languages.map(lang => (
-        <option value={lang} > {lang.toUpperCase()}</option>
-    ))}
-</select>
-<script is:inline>
-    import {  setLanguage, getLanguage} from '../utils/i18n';
-    const selectElement = document.querySelector('select');
-    const currentLanguage = getLanguage();
-    selectElement.value = currentLanguage;
 
-
-    selectElement.addEventListener('change', (event) => {
-        const selectedLanguage = event.target.value;
-        setLanguage(selectedLanguage);
-        document.location.reload();
-      });
-</script>
+<nav class="flex gap-x-2">
+  {languages.map(lang => (
+    <a href={`?lang=${lang}`} class={`rounded-full px-3 py-1 transition text-base md:text-sm ${currentLang === lang ? 'bg-white/10' : 'hover:bg-white/10'}`}>
+      {lang.toUpperCase()}
+    </a>
+  ))}
+</nav>

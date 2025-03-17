@@ -12,12 +12,8 @@ export const getDefaultLanguage = () => {
     return languages[0];
 };
 
-export const getLanguage = () => {
-    return languages[0]; // default
-};
-
 export const setLanguage = (lang) => {
-  localStorage.setItem('language', lang);
+    // cookie logic
 };
 
 export const translate = (key, lang) => {
